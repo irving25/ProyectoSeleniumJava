@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.15.0'
+// https://mvnrepository.com/artifact/org.testng/testng
+    testImplementation 'org.testng:testng:7.8.0'
+// https://mvnrepository.com/artifact/io.cucumber/cucumber-java
+    implementation 'io.cucumber:cucumber-java:7.14.1'
+// https://mvnrepository.com/artifact/io.cucumber/cucumber-junit
+    testImplementation 'io.cucumber:cucumber-junit:7.14.1'
+// https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager
+    //Libreria para no hacer setup del driver como se hacia antes, solo se manda a llamar y se isntancia en el before
+    implementation 'io.github.bonigarcia:webdrivermanager:5.6.2'
+    testImplementation 'org.testng:testng:7.1.0'
+
+}
+
+tasks.named('test'){
+    systemProperty"cucumber.options", System.getProperty("cucumber.options")
+    systemProperties System.getProperties();
+}
